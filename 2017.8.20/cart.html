@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            -webkit-user-select: none;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 40px;
+            background: #ff00ff;
+            color: #ffffff;
+            position: relative;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        #box2 {
+            width: 400px;
+            height: 200px;
+            background: #0000ff;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='box1'>购物车
+        <div id="box2">购物车没有任何东西，赶紧选购吧！</div>
+    </div>
+</body>
+<script>
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    //利用事件委托去实现
+    //方法1：
+    /*document.body.onclick = function (e) {
+        e=e||window.event;
+        var target = e.target || e.srcElement;
+        //如果id是box1，box2显示隐藏
+        if (target.id === 'box1') {
+            if (box2.style.display === 'block') {
+                box2.style.display = 'none'
+            } else {
+                box2.style.display = 'block';
+            }
+            return;
+        }
+        //id除了box1和box2以外所有的地方box2都隐藏
+        if (target.id !== 'box1' && target.id !== 'box2') {
+            box2.style.display = 'none'
+        }
+    }*/
+    //方法2：
+    document.body.onclick = function (e) {
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+        //如果id是box1，box2显示隐藏
+        if (target.id === 'box1') {
+            if (box2.style.display === 'block') {
+                box2.style.display = 'none'
+            } else {
+                box2.style.display = 'block';
+            }
+            return;
+        }
+        //如果id是box2，box2一直显示
+        /*if(target.id==='box2'){
+            box2.style.display = 'block';
+            return;
+        }*/
+        //如果id是box2,组织box2向上冒泡
+        if (target.id === 'box2') {
+            e.stopPropagation ? e.stopPropagation() : cancleBubble = true;
+            return;
+        }
+        //点击body，box2显示
+        box2.style.display='none'
+    }
+
+</script>
+
+</html>

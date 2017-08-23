@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #warp {
+        width: 400px;
+        height: 400px;
+        background: #cccccc;
+        margin: 50px auto;
+        position: relative;
+    }
+
+    #box {
+        width: 100px;
+        height: 100px;
+        background: green;
+        position: absolute;
+        cursor: all-scroll;
+    }
+</style>
+
+<body>
+    <div id="warp"></div>
+</body>
+<script>
+    var warp = document.getElementById('warp');
+    //var box = null;
+    //第1种实现方法
+    /*var box = document.createElement('div');
+    warp.onmouseover = function () {
+        box.id = 'box';
+        warp.appendChild(box);
+        box.onmouseover = function (e) {
+            e = e || window.event;
+            e.stopPropagation ? e.stopPropagation():cancleBubble = true;
+        }
+    }
+    warp.onmousemove = function (e) {
+        e = e || window.event;
+        box.style.left = e.clientX - this.offsetLeft-box.offsetWidth/2 + 'px';
+        box.style.top = e.clientY - this.offsetTop-box.offsetHeight/2 + 'px';
+    }
+    warp.onmouseout = function () {
+        warp.removeChild(box);
+        box.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation?e.stopPropagation():cancleBubble=true;
+        }
+    }*/
+    //第2种
+
+    var box = document.createElement('div');
+    warp.onmouseenter = function () {
+        box.id = 'box';
+        this.appendChild(box);
+    }
+    warp.onmousemove = function (e) {
+        e = e || window.event;
+        box.style.left = e.clientX - this.offsetLeft - box.offsetWidth / 2 + 'px';
+        box.style.top = e.clientY - this.offsetTop - box.offsetHeight / 2 + 'px';
+    }
+    warp.onmouseleave = function () {
+        this.removeChild(box);
+    }
+
+    //第3种实现方法
+    /*warp.onmouseover = function (e) {
+        e=e||window.event;
+        var oTo=e.fromElement||e.relatedTarget;
+        if(this.contains(oTo)) return;
+        box = document.createElement('div');
+        box.id = 'box';
+        warp.appendChild(box);
+    }
+    warp.onmousemove = function (e) {
+        e = e || window.event;
+        box.style.left = e.clientX - warp.offsetLeft-box.offsetWidth/2 + 'px';
+        box.style.top = e.clientY - warp.offsetTop-box.offsetHeight/2 + 'px';
+    }
+    warp.onmouseout = function (e) {
+        e=e||window.event;
+        var oTo=e.toElement||e.relatedTarget;
+        if(this.contains(oTo)) return;
+        this.removeChild(box);
+    }*/
+
+</script>
+
+</html>

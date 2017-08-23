@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: #ff000f;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或 您好您好哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或
+    <div id='box'></div>
+</body>
+<script>
+    var oBox = document.getElementById('box');
+    //第2种方法
+    /*var x,y;
+    oBox.onmousedown = down;
+    function down(e) {
+        e = e || window.event;
+        //获取鼠标点击box的坐标
+        x = e.clientX - oBox.offsetLeft;
+        y = e.clientY - oBox.offsetTop;
+        if(oBox.setCapture){//捕获焦点判断是否是IE
+            oBox.setCapture;
+            oBox.onmousemove=move;
+            oBox.onmouseup=up;
+        }else{
+            document.onmousemove=move;
+            document.onmouseup=up;
+        }
+    }
+    function move(e) {
+        e=e||window.event;
+        oBox.style.left=e.clientX-x+'px';
+        oBox.style.top=e.clientY-y+'px';
+        if(e.preventDefault){
+            e.preventDefault();
+        }
+    }
+    function up() {
+        if(oBox.repleaseCapture){
+            oBox.repleaseCapture();
+        }
+        document.onmouseup=null;
+        document.onmousemove=null;
+    }*/
+    //第一种方法
+    /*oBox.onmousedown = function (e) {
+        e = e || window.event;
+        var x = e.clientX - oBox.offsetLeft;
+        var y = e.clientY - oBox.offsetTop;
+        document.onmousemove = function (e) {
+            e = e || window.event;
+            oBox.style.left = e.clientX - x + 'px';
+            oBox.style.top = e.clientY - y + 'px';
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }*/
+    //第3种方法
+    oBox.onmousedown=down;
+    var x, y, l, t;
+    function down(e){
+        e=e||window.event;
+        //获取移动之前的坐标
+        x = e.clientX;
+        y = e.clientY;
+        //获取移动之前自身的位置
+        l = this.offsetLeft;
+        t = this.offsetTop;
+        //获取焦点，判断IE
+        if(oBox.setCapture){
+            oBox.setCapture();
+            oBox.onmousemove=move;
+            oBox.onmouseup=up;
+        }else{
+            document.onmousemove=move;
+            document.onmouseup=up;
+        }
+    }
+    function move(e){
+        e=e||window.event;
+        oBox.style.left=e.clientX-x+l+'px';
+        oBox.style.top=e.clientY-y+t+'px';
+        if(e.preventDefault){
+            e.preventDefault();
+        }
+    }
+    function up(){
+        //释放焦点
+        if(oBox.releaseCapture){
+            oBox.releaseCapture();
+        }
+        document.onmousemove=null;
+        document.onmouseup=null;
+    }
+</script>
+
+</html>

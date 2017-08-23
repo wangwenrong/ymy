@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #warp {
+            width: 880px;
+            height: 220px;
+            box-shadow: 0 0 5px #ccc;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        #warp::after {
+            display: block;
+            height: 0;
+            content: '';
+            clear: both;
+        }
+
+        #warp>img {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            float: left;
+        }
+
+        p>img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <div id='warp'>
+        <img src="img/apple_1.jpg" data-realImg='img/apple_1_bigger.jpg' alt="">
+        <img src="img/apple_2.jpg" data-realImg='img/apple_2_bigger.jpg' alt="">
+        <img src="img/apple_3.jpg" data-realImg='img/apple_3_bigger.jpg' alt="">
+        <img src="img/apple_4.jpg" data-realImg='img/apple_4_bigger.jpg' alt="">
+        <p><img class='bigImg' src="img/apple_1_bigger.jpg" alt=""></p>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script>
+    /*$('#warp').on('mouseover mousemove', function (e) {
+        e = e || window.event;
+        var x = e.clientX - $('#warp').offset().left+5;
+        var y = e.clientY - $('#warp').offset().top+5;
+        var imgSrc = $(e.target).data('realimg');
+
+        $('.bigImg').fadeIn().attr('src', imgSrc).css('left', x).css('top', y)
+
+    })
+    $('#warp').on('mouseout', function () {
+        $('.bigImg').hide();
+    })*/
+
+    $('#warp').on('mouseenter mousemove', function (e) {
+        e = e || window.event;
+        var x = e.clientX - $('#warp').offset().left+5;
+        var y = e.clientY - $('#warp').offset().top+5;
+        var imgSrc = $(e.target).data('realimg');
+        $('.bigImg').fadeIn().attr('src', imgSrc).css({
+            left: x,
+            top: y
+        })
+    })
+    $('#warp').on('mouseleave', function () {
+        $('.bigImg').hide();
+    })
+
+</script>
+
+</html>

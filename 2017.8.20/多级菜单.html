@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul.warp {
+            background: -webkit-linear-gradient(top, lightblue, lightgreen);
+            -webkit-user-select: none;
+        }
+        ul>li {
+            margin-left: 20px;
+            line-height: 30px;
+        }
+        ul>li>p>em {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url(img/icon.png);
+            cursor: pointer;
+            vertical-align: middle;
+            background-position: -42px -28px;
+        }
+        ul>li>p>em.on {
+            background-position: -59px -28px;
+        }
+        ul>li>p>span{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        ul>li>p {
+            cursor: pointer;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+        .warp ul{
+            /* display: none; */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <ul class='warp'>
+        <li>
+            <p><em class='on'></em><span>第一级第一个</span></p>
+            <ul>
+                <li>
+                    <p><em class='on'></em><span>第二级第一个</span></p>
+                    <ul>
+                        <li>
+                            <p><em class='on'></em><span>第三级第一个</span></p>
+                            <ul>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第一个</span></p>
+                                    <ul>
+                                        <li>第四级第一个</li>
+                                        <li>第四级第二个</li>
+                                        <li>第四级第三个</li>
+                                        <li>第四级第四个</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><em class='on'></em><span>第三级第二个</span></p>
+                            <ul>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第一个</span></p>
+                                    <ul>
+                                        <li>第五级第二个</li>
+                                        <li>第五级第一个</li>
+                                        <li>第五级第三个</li>
+                                        <li>第五级第四个</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第二个</span></p>
+                                    <ul>
+                                        <li>第五级第二个</li>
+                                        <li>第五级第一个</li>
+                                        <li>第五级第三个</li>
+                                        <li>第五级第四个</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第三个</span></p>
+                                    <ul>
+                                        <li>第五级第二个</li>
+                                        <li>第五级第一个</li>
+                                        <li>第五级第三个</li>
+                                        <li>第五级第四个</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第四个</span></p>
+                                    <ul>
+                                        <li>第五级第二个</li>
+                                        <li>第五级第一个</li>
+                                        <li>第五级第三个</li>
+                                        <li>第五级第四个</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><span class='on'></span>第三级第三个</p>
+                            <ul>
+                                <li>
+                                    <p><em class='on'></em><span>第四级第一个</span></p>
+                                    <ul>
+                                        <li>第五级第一个</li>
+                                        <li>第五级第二个</li>
+                                        <li>第五级第三个</li>
+                                        <li>第五级第四个</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script>
+    $('.warp').on('click', function (e) {
+        e=e||window.event;
+        var $target = e.target;
+        $('em').toggleClass();
+        $target.toggle();
+    })
+
+</script>
+
+</html>

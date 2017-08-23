@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .l,
+    .r {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        box-shadow: 0 0 3px #000;
+        float: left;
+        margin: 10px;
+        overflow: hidden;
+    }
+
+    .l {
+        background: url(img/1.jpg)
+    }
+
+    .r {
+        display: none;
+        position: relative;
+    }
+    .r>img{
+        position: absolute;
+    }
+
+    .l>.mask {
+        width: 200px;
+        height: 200px;
+        background: rgba(40, 40, 40, .3);
+        position: absolute;
+        display: none;
+        cursor: all-scroll;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <div class='l' id='l'>
+        <div class='mask' id='mask'></div>
+    </div>
+    <div class='r' id='r'>
+        <img src="img/2.jpg" id='img' alt="">
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script>
+    //用jq去实现
+    var $mask=$('.mask');
+    var $l=$('.l');
+    $l.on('mouseenter',function(){
+        $mask.show();
+        $('.r').show();
+    });
+    $l.on('mousemove',function(e){
+        var x = e.clientX-$l.offset().left-$mask.width()/2;
+        var y = e.clientY-$l.offset().top-$mask.height()/2;
+        var maxX=$l.width()-$mask.width();
+        var maxY=$l.height()-$mask.height();
+        if(x<=0){
+            x=0;
+        }else if(x>maxX){
+            x=maxX;
+        };
+        if(y<=0){
+            y=0;
+        }else if(y>maxY){
+            y=maxY;
+        }
+        $mask.css({
+            left:x,
+            top:y
+        })
+        $('#img').css({
+            left:-2*x,
+            top:-2*y
+        })
+    });
+    $('.l').on('mouseleave',function(){
+        $('.mask').hide();
+        $('.r').hide();
+    });
+
+    // var oMask = document.getElementById('mask');
+    // var oL = document.getElementById('l');
+    // var Or = document.getElementById('r');
+    // var Oimg = document.getElementById('img');
+    /*oL.onmouseenter = function () {
+        oMask.style.display = 'block';
+        Or.style.display = 'block';
+    }
+    oL.onmousemove = function (e) {
+        e = e || window.event;
+        //鼠标移动x的距离
+        var l = e.clientX - this.offsetLeft - oMask.offsetWidth / 2;
+        //最大移动x距离
+        var maxL = this.offsetWidth - oMask.offsetWidth;
+        //鼠标移动y距离
+        var t = e.clientY - this.offsetTop - oMask.offsetHeight / 2;
+        //最大移动y距离
+        var maxT = this.offsetHeight - oMask.offsetHeight;
+        //边界限制
+        if (l > maxL) {
+            l = maxL;
+        } else if (l <= 0) {
+            l = 0;
+        }
+        if (t > maxT) {
+            t = maxT;
+        } else if (t <= 0) {
+            t = 0;
+        }
+        oMask.style.left = l + 'px';
+        oMask.style.top = t + 'px';
+        //大图是左边mask移动的2倍
+        Oimg.style.left = -l * 2 + 'px';
+        Oimg.style.top = -t * 2 + 'px';
+        console.log(Oimg.style.left)
+        
+    }
+    oL.onmouseleave = function () {
+        oMask.style.display = 'none';
+        Or.style.display = 'none';
+    }*/
+
+    /*oL.onmouseenter=function(){
+        //当鼠标进入oL时透明方块显示
+        oMask.style.display='block';
+        //右侧图片显示
+        Or.style.display='block';   
+    }
+    //利用事件委托来实现鼠标移动
+    oL.onmousemove=function(e){
+        e=e||window.event;
+        //小方块的坐标等于鼠标坐标减去oMask距离左边可视区域距离
+        var x = e.clientX-oL.offsetLeft-oMask.offsetWidth/2;
+        var y = e.clientY-oL.offsetTop-oMask.offsetHeight/2;
+        var maxX=oL.offsetWidth-oMask.offsetWidth;
+        var maxY=oL.offsetHeight-oMask.offsetHeight;
+        //定位测试
+        if(x<=0){
+            x=0;
+        }else if(x>maxX){
+            x=maxX
+        };
+        if(y<=0){
+            y=0;
+        }else if(y>maxY){
+            y=maxY
+        }
+        oMask.style.left=x+'px';
+        oMask.style.top=y+'px';
+        //右边大图和小图的移动方向相反，且是2倍
+        Oimg.style.left=-2*x+'px';
+        Oimg.style.top=-2*y+'px';
+    }
+    oL.onmouseleave=function(){
+        //当鼠标移出oL时透明方块隐藏
+        oMask.style.display='none';
+        //右侧图片显示
+        Or.style.display='none';   
+    }*/
+
+</script>
+
+</html>

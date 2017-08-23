@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            padding: 100px;
+            font-size: 40px;
+        }
+        #box1{
+            background: #ff0000;
+        }
+        #box2{
+            background: #ff00ff;
+        }
+        #box3{
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">box1
+        <div id="box2">box2
+            <div id="box3">box3</div>
+        </div>
+    </div>
+</body>
+<script>
+    var oBox1=document.getElementById('box1');
+    var oBox2=document.getElementById('box2');
+    var oBox3=document.getElementById('box3');
+    // oBox1.onclick=function(){
+    //     alert(this.id);
+    // }
+    // oBox2.onclick=function(){
+    //     alert(this.id);
+    // }
+    // oBox3.onclick=function(e){
+    //     e=e||window.event;
+    //     alert(this.id);
+    //     e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+    // }
+    oBox1.addEventListener('click',function(){
+        alert(this.id);
+    },false);
+    oBox2.addEventListener('click',function(){
+        alert(this.id);
+    },false);
+    oBox3.addEventListener('click',function(e){
+        e=e||window.event;
+        alert(this.id);
+        e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+    },false);
+
+
+</script>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+        .wrap{
+            width: 1000px;
+            height: 340px;
+            margin:30px auto;
+            position: relative;
+            background: url("img/default.gif") center no-repeat #ccc;
+            overflow: hidden;
+        }
+        .wrap .boxInner{
+            width: 4000px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
+        .wrap .boxInner::after{
+            display: block;
+            content:'';
+            height: 0;
+            clear: both;
+        }
+        .wrap .boxInner img{
+            width: 1000px;
+            height: 340px;
+            float: left;
+            box-sizing: content-box;
+        }
+        .wrap ul{
+            position: absolute;
+            width: 100px;
+            overflow: hidden;
+            background: rgba(255,255,255,.4);
+            left: 50%;
+            margin-left: -50px;
+            bottom: 30px;
+            border-radius: 16px;
+            padding:0 10px;
+        }
+        .wrap ul li{
+            width: 20%;
+            height: 20px;
+            background: #cccccc;
+            float: left;
+            margin: 2.5%;
+            border-radius: 50%;
+        }
+        .wrap ul li.on{
+            background: #ff0000;
+        }
+        .wrap a{
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            width: 30px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            background: rgba(0,0,0,.2);
+            font-size: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            display: none;
+        }
+        .wrap a.left{
+            left: 0;
+        }
+        .wrap a.right{
+            right: 0;
+        }
+    </style>
+<body>
+<div class="wrap">
+    <div class="boxInner">
+        <img src="img/banner1.jpg" data-realImg="img/banner1.jpg">
+        <img src="img/banner2.jpg" data-realImg="img/banner1.jpg">
+        <img src="img/banner3.jpg" data-realImg="img/banner1.jpg">
+        <img src="img/banner4.jpg" data-realImg="img/banner1.jpg">
+    </div>
+    <ul>
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <a href="javascript:;" class="left"><</a>
+    <a href="javascript:;" class="right">></a>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<!-- <script src="tab.js"></script> -->
+<script>
+        var curIndex = 0;
+        var allLength = 0;
+        var timer=null;
+        allLength=$('ul>li').length;
+
+        function move(n){
+        if(n>allLength-1){
+            curIndex=0;
+        }else if(n<0){
+            curIndex=allLength-1;
+        }else{
+            curIndex=n;
+        }
+        $('ul>li').eq(curIndex).addClass('on').siblings().removeClass('on');
+        $('.boxInner').animate({ left: -1000 * curIndex });
+    }   
+    function init(){
+        move(curIndex);
+        auto();
+        $('.wrap').mouseover(function(){
+            showLeftRight();
+            stop();
+        });
+        $('.wrap').mouseleave(function(){
+            hideLeftRight();
+            auto();
+        });
+        $('.left').click(function(){
+            move(curIndex-1);
+        });
+        $('.right').click(function(){
+            move(curIndex+1);
+        });
+        $('ul>li').click(function(){
+            console.log(1)
+            $(this).addClass('on').siblings().removeClass('on');
+            move(curIndex);
+        })
+    }
+    function auto(){
+        stop();
+        timer=setInterval(function(){
+            move(curIndex+1)
+        },2000);
+    }
+    function stop(){
+        clearInterval(timer);
+    }
+    function showLeftRight(){
+        $('.left').show().next('.right').show();
+    }
+    function hideLeftRight(){
+        $('.left').hide().next('.right').hide();
+    }
+    init();
+
+
+</script>
+</html>
