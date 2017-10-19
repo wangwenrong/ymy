@@ -1,0 +1,59 @@
+.layout-aside{
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #404040;
+    transition:all .5s linear;
+    overflow: hidden;
+}
+.layout-aside.layout-aside-collapse{
+    width: 64px;
+}
+.layout-aside a{
+    font-size: 16px;
+}
+.layout-title{
+    text-align: center;
+    white-space: nowrap;
+}
+.layout-title i{
+    display: inline-block;
+    transition:all .5s linear;
+    color: #fff;
+    font-size: 40px;
+    vertical-align: middle;
+}
+.layout-title i:hover{
+    transform:rotateY(350deg);
+}
+.layout-title>span{
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+.layout-aside .ant-menu-item{
+    height: 50px !important;
+    line-height: 50px !important;
+}
+.ant-menu-item-selected.ant-menu-item{
+    background: gray !important;
+    height: 50px !important;
+}
+.layout-action{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 40px;
+    background: gray;
+    text-align: center;
+    line-height: 40px;
+}
+.layout-aside span{
+    margin-left:10px;
+}
