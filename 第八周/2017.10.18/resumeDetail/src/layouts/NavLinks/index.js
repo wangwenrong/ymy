@@ -5,8 +5,8 @@ import { Menu, Icon } from 'antd';
 import './index.css'
 export default class NavLinks extends Component {
     showMenu(data,collapse){
-        return data.map(item=>(
-            <Menu.Item key={item.to}>
+        return data.map((item,index)=>(
+            <Menu.Item key={index}>
                 <Link to={item.to=='index'?'/':`/${item.to}`}><i className={`nav-icon iconfont icon-${item.to}`}></i>{collapse?<span>{item.name}</span>:''}</Link>
             </Menu.Item>
         ))

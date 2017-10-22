@@ -1,0 +1,59 @@
+.contact{
+    width: 100%;
+    height: 100%;
+}
+.contact>h2{
+    text-align: center;
+}
+.contact-main{
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:nowrap; */
+    width: 300px;
+    margin: auto;
+}
+.contact-main-item {
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+}
+.contact-main-item i{
+    font-size: 50px;
+}
+.contact-main-item-name{
+    margin: 0 10px;
+}
+.contact-detail{
+    margin-top: 50px;
+}
+.contact-detail>h3{
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+.contact-detail>h3::before{
+    width: 40%;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    content: '';
+}
+.contact-detail>h3::after{
+    width: 40%;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    content: '';
+}
+.contact-detail-icon{
+    text-align: center;
+}
+.contact-detail>.contact-detail-icon>i{
+    font-size: 50px;
+}
+
